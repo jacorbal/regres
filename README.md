@@ -36,7 +36,8 @@ Linux, featuring a menu interface built with `ncurses`.
 
 ## Requirements
 
-  - C Compiler (`gcc`, `clang`, etc.)
+  - C compiler compliant with the ISO/IEC 9899:1999 standard (C99):
+    `gcc`, `clang`, etc.
   - `ncurses` library
   - `gnuplot` [optional], but the plotting option invokes `gnuplot`
 

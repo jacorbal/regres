@@ -306,7 +306,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
         case TUI_MENU_QUIT:
             if (!tui_dialog_confirm_if_modified(
                         dataset_is_modified(dataset),
-                        "Unsaved data! Exit anyway? (y/N)")) {
+                        "Unsaved data! Exit anyway? (y/N)") != 0) {
                 break;
             }
             *is_running = 0;
