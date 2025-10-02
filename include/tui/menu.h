@@ -34,19 +34,19 @@ typedef enum {
 /* Public interface */
 /**
  * @brief Create a menu for the terminal user interface
- * 
+ *
  * Initializes a menu window, creates menu items based on predefined
  * choices, and sets up the menu for user interaction.  It also handles
  * the case where the dataset is empty by disabling certain menu
  * options.
- * 
+ *
  * @param out_menu_win    Pointer to a window pointer where the menu
  *                        window will be stored
  * @param out_menu_sub    Pointer to a window pointer where the submenu
  *                        window will be stored
- * @param out_items       Pointer to an item pointer where the created 
+ * @param out_items       Pointer to an item pointer where the created
  *                        items will be stored
- * @param out_items_count Pointer to an integer where the count of 
+ * @param out_items_count Pointer to an integer where the count of
  *                        created items will be stored
  * @param dataset         Pointer to the dataset structure used for menu
  *                        options
@@ -60,10 +60,10 @@ MENU *tui_menu_create(WINDOW **out_menu_win, WINDOW **out_menu_sub,
         dataset_td *dataset, const char *cur_filename);
 /**
  * @brief Clean up and frees resources used by the menu
- * 
+ *
  * Unposts and frees the menu, deallocates memory for the menu items,
  * and deletes the associated windows.
- * 
+ *
  * @param menu        Pointer to the menu structure to be destroyed
  * @param menu_win    Pointer to the main menu window to be deleted
  * @param menu_sub    Pointer to the submenu window to be deleted
@@ -75,11 +75,11 @@ void tui_menu_destroy(MENU *menu, WINDOW *menu_win, WINDOW *menu_sub,
 
 /**
  * @brief Navigate the menu and retrieves the selected index
- * 
+ *
  * Allows the user to navigate through the menu using keyboard input and
  * returns the index of the currently selected item when the @c Enter
  * key is pressed.
- * 
+ *
  * @param menu     Pointer to the @e MENU structure being navigated
  * @param menu_win Pointer to the window displaying the menu
  *
@@ -89,15 +89,15 @@ int tui_menu_navigate_and_get_index(MENU *menu, WINDOW *menu_win);
 
 /**
  * @brief Execute the action corresponding to the selected menu item
- * 
+ *
  * Takes the index of the selected menu item and executes the
  * corresponding action, which may include loading, saving, or
  * displaying data, as well as quitting the application.
- * 
+ *
  * @param index        Index of the selected menu item
  * @param dataset      Pointer to the dataset structure used in actions
  * @param cur_filename Pointer to the current filename string
- * @param is_running   Pointer to an integer indicating if the TUI 
+ * @param is_running   Pointer to an integer indicating if the TUI
  *                     should continue running
  */
 void tui_menu_execute_choice(int index, dataset_td *dataset,

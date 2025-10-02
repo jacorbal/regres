@@ -15,7 +15,7 @@
 #include <tui/dialogs.h>
 
 
-/* Present a message if data size is zero */
+/* Present a dialog message if condition is zero */
 int tui_dialog_alert_on_condition(int condition, const char *msg)
 {
     if (condition) {

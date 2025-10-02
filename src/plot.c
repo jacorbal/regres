@@ -40,7 +40,7 @@ void plot_data(const dataset_td *ds, double a, double b)
         return;
     }
 
-    if ((fp = fdopen(fd, "w")) == NULL ){ 
+    if ((fp = fdopen(fd, "w")) == NULL ){
         close(fd);
         unlink(tmpl);
         return;

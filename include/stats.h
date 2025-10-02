@@ -42,11 +42,11 @@ typedef struct {
 /* Public interface */
 /**
  * @brief Compute statistics from the given dataset
- * 
+ *
  * Calculates various statistical measures, including the mean, sum, and
  * variance of the @e x and @e y values in the dataset.  It populates
  * a @e stats_td structure with the computed values.
- * 
+ *
  * @param ds Pointer to the dataset structure containing the data points
  *
  * @return Structure containing the computed statistics, including the

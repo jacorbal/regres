@@ -18,7 +18,7 @@
  * Creates a temporary file with the dataset points, launches @c gnuplot
  * and instructs it to plot the points and the regression line
  * @e (y = a + b*x).
- * 
+ *
  * @param ds Pointer to the dataset to plot (must not be @c NULL)
  * @param a  Intercept of the regression line @e (y = a + b*x)
  * @param b  Slope of the regression line @e (y = a + b*x)

@@ -36,31 +36,31 @@ typedef struct {
 /* Public interface  */
 /**
  * @brief Initialize a dataset structure
- * 
+ *
  * Set the initial size and capacity of the dataset, allocates memory
  * for the data points, and marks the dataset as unmodified.
- * 
+ *
  * @param ds Pointer to the dataset structure to be initialized
  */
 void dataset_init(dataset_td *ds);
 
 /**
  * @brief Destroy a dataset structure
- * 
+ *
  * Frees the memory allocated for the data points in the dataset,
  * effectively cleaning up the resources used by the dataset.
- * 
+ *
  * @param ds Pointer to the dataset structure to be destroyed
  */
 void dataset_destroy(dataset_td *ds);
 
 /**
  * @brief Add a new data point to the dataset
- * 
+ *
  * This function adds a new data point with the specified @e x, @e y,
  * and @e ey values to the dataset.  If the dataset's capacity is
  * reached, it reallocates memory to accommodate more points.
- * 
+ *
  * @param ds Pointer to the dataset structure where the point will be
  *           added
  *
@@ -72,10 +72,10 @@ void dataset_add(dataset_td *ds, double x, double y, double ey);
 
 /**
  * @brief Apply the logarithm transformation to a specified column
- * 
+ *
  * Applies the natural logarithm to all data points in the specified
  * column (0 for @e x, 1 for @e y) of the dataset.
- * 
+ *
  * @param ds  Pointer to the dataset structure.
  * @param col Column index to apply the logarithm transformation
  */
@@ -83,10 +83,10 @@ void dataset_log_col(dataset_td *ds, int col);
 
 /**
  * @brief Apply the antilogarithm transformation to a specified column
- * 
+ *
  * Applies the exponential function to all data points in the specified
  * column (0 for @e x, 1 for @e y) of the dataset.
- * 
+ *
  * @param ds  Pointer to the dataset structure.
  * @param col Column index to apply the antilogarithm transformation
  */
@@ -94,11 +94,11 @@ void dataset_antilog_col(dataset_td *ds, int col);
 
 /**
  * @brief Invert the values in a specified column
- * 
+ *
  * Inverts the values of all data points in the specified column (0 for
  * @e x, 1 for @e y) of the dataset, provided that the values are not
  * zero.
- * 
+ *
  * @param ds  Pointer to the dataset structure
  * @param col Column index to invert values
  */
@@ -106,10 +106,10 @@ void dataset_inv_col(dataset_td *ds, int col);
 
 /**
  * @brief Multiply the values in a specified column by a factor
- * 
+ *
  * Multiplies all data points in the specified column (0 for @e x, 1 for
  * @e y) of the dataset by the given factor.
- * 
+ *
  * @param ds     Pointer to the dataset structure
  * @param col    Column index to multiply values
  * @param factor Factor by which to multiply the values

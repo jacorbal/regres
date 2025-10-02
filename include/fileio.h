@@ -25,7 +25,7 @@
  * @param filename Path to the input text file
  * @param ds       Pointer to the dataset to populate
  *
- * @return 1 on success (file opened and read), 
+ * @return 1 on success (file opened and read)
  *         0 on failure (could not open file)
  *
  * @note The function reinitializes the dataset before loading (previous
@@ -45,7 +45,7 @@ int fileio_load(const char *filename, dataset_td *ds);
  * @param ds       Pointer to the dataset to save
  *
  * @return 1 on success (file opened and written),
- *         0 on failure (could not open file) 
+ *         0 on failure (could not open file)
  */
 int fileio_save(const char *filename, dataset_td *ds);
 
