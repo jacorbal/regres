@@ -1,22 +1,21 @@
-Regres -- Linear Regression Analysis Tool
+Regres -- Linear regression analysis tool
 =========================================
 
 ## Overview
 
-This program is a **Linear Regression Analysis Tool** developed using
-the **ncurses** library.  It allows users to perform linear regression
+Regres is a **Linear regression analysis tool** developed using the
+**ncurses** library.  It allows users to perform linear regression
 analysis using the least squares method, visualize data, and conduct
 statistical analysis in a terminal-based user interface (TUI).
 
 ## History
 
-This program was initially developed during the laboratory practices for
-various first-year Physics courses at the University of Salamanca
-(Spain) in 2002.  It quickly became an essential tool for many students.
-The first version was created in a rudimentary format for DOS, while the
-third iteration introduced graphical representation capabilities using
-an SVGA controller (`BGI`).  That code still exists, but it's not
-public.
+It was initially developed during the laboratory practices for various
+first-year Physics courses at the University of Salamanca (Spain) in
+2002.  It quickly became an essential tool for many students.  The first
+version was created in a rudimentary format for DOS, while the third
+iteration introduced graphical representation capabilities using an SVGA
+controller (`BGI`).  That code still exists, but it's not public.
 
 This current version is a simplified edition, as it does not allow data
 editing (yet) nor does it account for multiple measurements for the same
@@ -25,7 +24,7 @@ Linux, featuring a menu interface built with `ncurses`.
 
 ## Version
 
-This is version 4.1.0, with further improvements yet to come.
+  - Current: version 4.1.0 (with further improvements yet to come)
 
 ## Features
 
