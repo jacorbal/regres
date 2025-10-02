@@ -240,15 +240,15 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_SAVE_DATA:
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
+                        "No data entered: enter new data or load"
+                        " an existing file") != 0){
+                break;
+            }
             if (tui_dialog_alert_on_condition(
                         dataset_is_modified(dataset),
                         "No changes have been made: no need to"
                         " save file") != 0){
-                break;
-            }
-            if (tui_dialog_alert_on_condition(dataset_size(dataset),
-                        "No data entered: enter new data or load"
-                        " an existing file") != 0){
                 break;
             }
             tui_action_save(dataset, cur_filename);
