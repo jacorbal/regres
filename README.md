@@ -3,7 +3,7 @@ Regres -- Linear regression analysis tool
 
 ## Overview
 
-Regres is a **Linear regression analysis tool** developed using the
+Regres is a **linear regression analysis tool** developed using the
 **ncurses** library.  It allows users to perform linear regression
 analysis using the least squares method, visualize data, and conduct
 statistical analysis in a terminal-based user interface (TUI).
@@ -79,9 +79,10 @@ Linux, featuring a menu interface built with `ncurses`.
 
   - This project is licensed under the MIT License.
   - See the [`LICENSE`](LICENSE) file for details.
-  - Copyright 2002-2025 (c), J. A. Corbal
+  - Copyright (c) 2002-2025, J. A. Corbal
 
 ## Contributing
 
-Contributions are welcome!  Please feel free to submit a pull request or
-open an issue to discuss improvements or suggestions.
+Contributions are welcome.  Feel free to submit a pull request or open
+an issue to discuss improvements or suggestions.  Take into
+consideration that the development of this program is still ongoing.
