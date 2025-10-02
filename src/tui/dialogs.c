@@ -16,9 +16,9 @@
 
 
 /* Present a message if data size is zero */
-int tui_dialog_alert_no_data(size_t data_size, const char *msg)
+int tui_dialog_alert_on_condition(int condition, const char *msg)
 {
-    if (data_size) {
+    if (condition) {
         return 0;
     }
 

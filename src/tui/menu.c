@@ -93,11 +93,18 @@ MENU *tui_menu_create(WINDOW **out_menu_win, WINDOW **out_menu_sub,
             break;
         }
 
-        /* Diable menu options that do not work without data */
         if (dataset_is_empty(dataset)) {
+            /* Diable menu options that do not work without data */
             if (i == TUI_MENU_SAVE_DATA || i == TUI_MENU_SAVEAS_DATA ||
                 i == TUI_MENU_SHOW_TABLE || i == TUI_MENU_PLOT ||
                 i == TUI_MENU_STATISTICS || i == TUI_MENU_REGRESSION) {
+                int opts = item_opts(items[i]);
+                opts &= ~O_SELECTABLE;
+                set_item_opts(items[i], opts);
+            }
+        } else if (!dataset_is_modified(dataset)) {
+            /* Diable menu options that do not work with saved data */
+            if (i == TUI_MENU_SAVE_DATA) {
                 int opts = item_opts(items[i]);
                 opts &= ~O_SELECTABLE;
                 set_item_opts(items[i], opts);
@@ -233,7 +240,13 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_SAVE_DATA:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(
+                        dataset_is_modified(dataset),
+                        "No changes have been made: no need to"
+                        " save file") != 0){
+                break;
+            }
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data entered: enter new data or load"
                         " an existing file") != 0){
                 break;
@@ -242,7 +255,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_SAVEAS_DATA:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data entered: enter new data or load"
                         " an existing file") != 0) {
                 break;
@@ -251,7 +264,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_SHOW_TABLE:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data entered: enter new data or load"
                         " an existing file") != 0) {
                 break;
@@ -260,7 +273,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_PLOT:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data to plot: enter new data or load"
                         " an existing file") != 0) {
                 break;
@@ -269,7 +282,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_STATISTICS:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data to analyze: enter new data or load"
                         " an existing file") != 0) {
                 break;
@@ -278,7 +291,7 @@ void tui_menu_execute_choice(int index, dataset_td *dataset,
             break;
 
         case TUI_MENU_REGRESSION:
-            if (tui_dialog_alert_no_data(dataset_size(dataset),
+            if (tui_dialog_alert_on_condition(dataset_size(dataset),
                         "No data to analyze: enter new data or load"
                         " an existing file") != 0) {
                 break;

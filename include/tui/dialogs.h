@@ -22,12 +22,12 @@
 /**
  * @brief Present a message if data size is zero
  *
- * @param data_size If zero, prompt message
+ * @param condition If zero, prompt message
  * @param msg       Message to show on error
  *
  * @return 0 if data set is not empty, 1 otherwise
  */
-int tui_dialog_alert_no_data(size_t data_size, const char *msg);
+int tui_dialog_alert_on_condition(int condition, const char *msg);
 
 /**
  * @brief Show a modal dialog asking whether to do something when data
