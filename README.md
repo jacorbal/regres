@@ -24,7 +24,7 @@ Linux, featuring a menu interface built with `ncurses`.
 
 ## Version
 
-  - Current: version 4.1.0 (with further improvements yet to come)
+  - Current: version 4.1.1 (with further improvements yet to come)
 
 ## Features
 

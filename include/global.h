@@ -11,8 +11,8 @@
 /* Constant strings regarding the program */
 #define REGRES_EXEC_NAME    "regres"
 #define REGRES_PROG_NAME    "Regres"
-#define REGRES_PROG_VERSION "4.1.0"
-#define REGRES_PROG_BUILD   "2025-10-01"
+#define REGRES_PROG_VERSION "4.1.1"
+#define REGRES_PROG_BUILD   "2025-10-08"
 #define REGRES_AUTHOR       "J. A. Corbal"
 #define REGRES_AUTHOR_EMAIL "jacorbal@gmail.com"
 #define REGRES_LICENSE      "MIT License"

@@ -8,12 +8,12 @@
  * on a menu-driven @c ncurses interface.
  *
  * @author J. A. Corbal <jacorbal@gmail.com>
- * @version 4.1.0
+ * @version 4.1.1
  * @copyright Copyright (c) 2002-2025, J. A. Corbal.
  *            Licensed under MIT license; read `LICENSE` file for details
  *
  * @date Creation date: Thu Oct  2 11:03:54 UTC 2025
- * @date Last update: Thu Oct  2 11:03:54 UTC 2025
+ * @date Last update: Thu Oct  8 13:14:32 UTC 2025
  */
 
 /* Project includes */
