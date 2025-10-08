@@ -12,6 +12,10 @@
 #include <dataset.h>
 
 
+#define PLOT_MAX_TEMP_FILES (256)   /**< Maximum number of temporary
+                                         files that can be tracked */
+
+
 /**
  * @brief Plot data points and the regression line using @c gnuplot
  *
