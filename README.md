@@ -4,7 +4,7 @@ Regres -- Linear regression analysis tool
 ## Overview
 
 Regres is a **linear regression analysis tool** developed using the
-**ncurses** library.  It allows users to perform linear regression
+`ncurses` library.  It allows users to perform linear regression
 analysis using the least squares method, visualize data, and conduct
 statistical analysis in a terminal-based user interface (TUI).
 

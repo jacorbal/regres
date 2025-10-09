@@ -4,12 +4,12 @@
  * @brief Implementation of plot functions
  */
 
-#define _POSIX_C_SOURCE 200809L /* popen, pclose, waitpid */
+#define _POSIX_C_SOURCE 200809L /* popen, pclose */
 
 
 /* System includes */
 #include <stdio.h>      /* fdopen, fopen, popen, pclose, size_t */
-#include <stdlib.h>     /* getenv, mkstemp, atexit */
+#include <stdlib.h>     /* atexit, getenv, mkstemp */
 #include <string.h>     /* strdup */
 #include <unistd.h>     /* close, unlink */
 
@@ -121,6 +121,7 @@ static const char *s_getenv_nonempty(const char *name)
  *
  * @param names Null-terminated array of null-terminated environment
  *              variable name strings
+ * @param def   Default directory if none was found in the names array
  *
  * @return Pointer to the environment string (as returned by @a getenv)
  *         for the first non-empty variable found, or @c NULL if none
@@ -132,22 +133,23 @@ static const char *s_getenv_nonempty(const char *name)
  * @note This function is safe only if the environment is not being
  *       changed concurrently
  *
+ * @warning Default value @p def must not end with the character '@c /'
+ *
  * @see @a s_getenv_nonempty()
  */
-static const char *s_tmpdir_first_nonempty(const char *names[])
+static const char *s_tmpdir_first_nonempty(const char *names[],
+        const char *def)
 {
-    if (names == NULL) {
-        return NULL;
-    }
-
-    for (size_t i = 0; names[i] != NULL; ++i) {
-        const char *v = s_getenv_nonempty(names[i]);
-        if (v != NULL) {
-            return v;
+    if (names != NULL) {
+        for (size_t i = 0; names[i] != NULL; ++i) {
+            const char *v = s_getenv_nonempty(names[i]);
+            if (v != NULL) {
+                return v;
+            }
         }
     }
 
-    return NULL;
+    return def;
 }
 
 
@@ -159,7 +161,7 @@ void plot_data(const dataset_td *ds, double a, double b)
     int fd;
     char tmpl[256];
     const char *tmp_names[] = { "TMPDIR", "TEMPDIR", "TMP", "TEMP", NULL };
-    const char *tmpdir = s_tmpdir_first_nonempty(tmp_names);
+    const char *tmpdir = s_tmpdir_first_nonempty(tmp_names, "/tmp");
 
     snprintf(tmpl, sizeof(tmpl), "%s/regres_dat_XXXXXX", tmpdir);
     atexit(s_tmp_files_delete);
