@@ -60,7 +60,7 @@ ${O_DIR}/%.o: ${S_DIR}/%.c
 
 
 ## Make options
-.PHONY: all ctags clean-obj clean-bin clean run hard hard-run doxygen help
+.PHONY: all ctags clean-obj clean-bin clean git run hard hard-run doxygen help
 
 all:
 	make ${TARGET}
@@ -96,6 +96,9 @@ hard-run:
 doxygen:
 	@[ -f 'Doxyfile' ] && doxygen || echo "'Doxyfile' not found" >&2
 
+git:
+	@git status --short
+
 help:
 	@echo "Type:"
 	@echo "  'make all'......................... Build project"
@@ -104,5 +107,6 @@ help:
 	@echo "  'make clean'....... Clean binary and object files"
 	@echo "  'make hard'...................... Clean and build"
 	@echo "  'make doxygen'...... Create Doxygen documentation"
+	@echo "  'make git'...................... Check git status"
 	@echo ""
 	@echo " Binary will be placed in '${TARGET}'"
