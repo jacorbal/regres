@@ -161,11 +161,6 @@ void plot_data(const dataset_td *ds, double a, double b)
     const char *tmp_names[] = { "TMPDIR", "TEMPDIR", "TMP", "TEMP", NULL };
     const char *tmpdir = s_tmpdir_first_nonempty(tmp_names);
 
-    /* Create temporary file and copy the data points to it */
-    if (tmpdir == NULL) { tmpdir = s_getenv_nonempty("TEMPDIR"); }
-    if (tmpdir == NULL) { tmpdir = s_getenv_nonempty("TMP"); }
-    if (tmpdir == NULL) { tmpdir = s_getenv_nonempty("TEMP"); }
-    if (tmpdir == NULL) { tmpdir = "/tmp"; }
     snprintf(tmpl, sizeof(tmpl), "%s/regres_dat_XXXXXX", tmpdir);
     atexit(s_tmp_files_delete);
 

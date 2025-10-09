@@ -2,7 +2,6 @@
  * @file tui/dialogs.c
  *
  * @brief Implementation of dialogs routines
- *
  */
 
 /* System includes */

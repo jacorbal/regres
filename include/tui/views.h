@@ -21,8 +21,8 @@
  * @brief Print title header and a mark regarding if data is saved
  *
  * @param filename    File name to show, if not @c NULL
- * @param is_modified If non-zero, draws a mark on the top right corner
- * @param is_empty    If non-zero, draws a zero on the top right corner
+ * @param is_modified If non-zero, informs on the top right corner
+ * @param is_empty    If non-zero, informs on the top right corner
  */
 void tui_view_print_title(const char *filename,
         int is_modified, int is_empty);
