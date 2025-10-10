@@ -4,14 +4,14 @@
  * @brief Implementation of plot functions
  */
 
-#define _POSIX_C_SOURCE 200809L /* popen, pclose */
+#define _POSIX_C_SOURCE 200809L /* popen, pclose, strdup */
 
 
 /* System includes */
-#include <stdio.h>      /* fdopen, fopen, popen, pclose, size_t */
+#include <stdio.h>      /* fdopen, fopen, popen, pclose */
 #include <stdlib.h>     /* atexit, getenv, mkstemp */
 #include <string.h>     /* strdup */
-#include <unistd.h>     /* close, unlink */
+#include <unistd.h>     /* close, unlink, size_t */
 
 /* Project includes */
 #include <dataset.h>
@@ -27,33 +27,10 @@ static int temp_file_count = 0;                 /**< Currently registered
 
 
 /**
- * @brief Delete all registered temporary files
- *
- * Iterates through the array of temporary file names, unlinking
- * (deleting) each file and freeing the associated memory.
- *
- * @note Intended to be called at program exit to ensure
- *       all temporary files are cleaned up
- * @note It should handle situations where files might not exist or
- *       where memory allocation may fail
- */
-static void s_tmp_files_delete(void)
-{
-    for (int i = 0; i < temp_file_count; ++i) {
-        if (temp_files[i] != NULL) {
-            unlink(temp_files[i]);
-            free(temp_files[i]);
-            temp_files[i] = NULL;
-        }
-    }
-}
-
-
-/**
  * @brief Register a temporary file name
  *
  * Attempts to add a new temporary file name to the @e temp_files
- * array.  If the maximum limit defined by @e PLOT_MAX_TEMP_FILES has
+ * array.  If the maximum limit defined by @c PLOT_MAX_TEMP_FILES has
  * been reached, it will return an error code.
  *
  * @param filename Name of the temporary file to register
@@ -78,7 +55,31 @@ static int s_tmp_files_register(const char *filename)
 
 
 /**
- * @brief Retrieve a non-empty environment variable value
+ * @brief Delete all registered temporary files
+ *
+ * Iterates through the array of temporary file names, unlinking
+ * (deleting) each file and freeing the associated memory.
+ *
+ * @note Intended to be called at program exit to ensure all temporary
+ *       files are cleaned up
+ * @note It should handle situations where files might not exist or
+ *       where memory allocation may fail
+ */
+static void s_tmp_files_delete(void)
+{
+    for (int i = 0; i < temp_file_count; ++i) {
+        if (temp_files[i] != NULL) {
+            unlink(temp_files[i]);
+            free(temp_files[i]);
+            temp_files[i] = NULL;
+        }
+    }
+}
+
+
+/**
+ * @brief Retrieve a non-empty environment variable value, or a default
+ *        value
  *
  * Query the environment for a variable and return its value only if it
  * exists and is not an empty string.  If the variable is not set or is
@@ -89,9 +90,9 @@ static int s_tmp_files_register(const char *filename)
  * @return Pointer to the environment string as returned by @a getenv()
  *         if the variable exists and is non-empty, otherwise @c NULL
  *
- * @note The returned pointer is valid until the environment is changed
- *       (e.g., via @a putenv, @a setenv, or @a unsetenv) and should not
- *       be freed
+ * @note Returned pointer should not be freed
+ * @note Returned pointer is valid until the environment is changed
+ *       (e.g., via @a putenv, @a setenv, or @a unsetenv)
  *
  * @warning This function is not thread-safe with respect to
  *          modifications of the process environment, i.e., concurrent
@@ -119,26 +120,24 @@ static const char *s_getenv_nonempty(const char *name)
  * and return the value of the first name that is set in the environment
  * and not empty.
  *
- * @param names Null-terminated array of null-terminated environment
- *              variable name strings
- * @param def   Default directory if none was found in the names array
+ * @param names    Null-terminated array of null-terminated environment
+ *                 variable name strings
+ * @param name_def Default string to use if none was found in the array
  *
  * @return Pointer to the environment string (as returned by @a getenv)
  *         for the first non-empty variable found, or @c NULL if none
- *         are set/non-empty
+ *         are set or non-empty
  *
  * @note If @p names itself is @c NULL, the return value will be @c NULL
- * @note The returned pointer refers to the process environment storage
- *       and must not be freed
- * @note This function is safe only if the environment is not being
- *       changed concurrently
+ * @note Returned pointer refers to the process environment storage and
+ *       must not be freed
  *
- * @warning Default value @p def must not end with the character '@c /'
+ * @warning Value @p name_def must not end with character '@c /'
  *
  * @see @a s_getenv_nonempty()
  */
 static const char *s_tmpdir_first_nonempty(const char *names[],
-        const char *def)
+        const char *name_def)
 {
     if (names != NULL) {
         for (size_t i = 0; names[i] != NULL; ++i) {
@@ -149,11 +148,11 @@ static const char *s_tmpdir_first_nonempty(const char *names[],
         }
     }
 
-    return def;
+    return name_def;
 }
 
 
-/* Plot data points and the regression line using 'gnuplot' */
+/* Plot data points and the regression line (a + b*x) using 'gnuplot' */
 void plot_data(const dataset_td *ds, double a, double b)
 {
     FILE *fp;

@@ -25,8 +25,8 @@
  * @param filename Path to the input text file
  * @param ds       Pointer to the dataset to populate
  *
- * @return 1 on success (file opened and read)
- *         0 on failure (could not open file)
+ * @return 0 on success (file opened and read)
+ *         1 on failure (could not open file)
  *
  * @note The function reinitializes the dataset before loading (previous
  *       contents are destroyed)
@@ -38,14 +38,14 @@ int fileio_load(const char *filename, dataset_td *ds);
  * @brief Save dataset points to a text file
  *
  * Writes each data point in the dataset to the specified file as three
- * floating-point columns: @e (x, y, ey).  After a successful save
- * the dataset's @e is_modified flag is cleared.
+ * floating-point columns: @e (x, y, ey).  After a successful save the
+ * dataset's @e is_modified flag is cleared.
  *
  * @param filename Path to the output text file
  * @param ds       Pointer to the dataset to save
  *
- * @return 1 on success (file opened and written),
- *         0 on failure (could not open file)
+ * @return 0 on success (file opened and written),
+ *         1 on failure (could not open file)
  */
 int fileio_save(const char *filename, dataset_td *ds);
 

@@ -20,7 +20,7 @@ int fileio_load(const char *filename, dataset_td *ds)
     FILE *fp = fopen(filename, "r");
 
     if (fp == NULL) {
-        return 0;
+        return 1;
     }
 
     dataset_destroy(ds);
@@ -43,7 +43,7 @@ int fileio_load(const char *filename, dataset_td *ds)
     fclose(fp);
     ds->is_modified = 0;
 
-    return 1;
+    return 0;
 }
 
 
@@ -53,7 +53,7 @@ int fileio_save(const char *filename, dataset_td *ds)
     FILE *fp = fopen(filename, "w");
 
     if (fp == NULL) {
-        return 0;
+        return 1;
     }
 
     for (size_t i=0; i < ds->size; ++i) {
@@ -64,5 +64,5 @@ int fileio_save(const char *filename, dataset_td *ds)
     fclose(fp);
     ds->is_modified = 0;
 
-    return 1;
+    return 0;
 }

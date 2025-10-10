@@ -87,7 +87,7 @@ void tui_action_load(dataset_td *dataset, char **cur_filename)
     curs_set(0);
     noecho();
 
-    if (!fileio_load(filename, dataset)) {
+    if (fileio_load(filename, dataset) != 0) {
         mvwprintw(win, 4, 2, "Failed to load");
     } else {
         mvwprintw(win, 4, 2, "Data loaded from '%s'", filename);
@@ -119,7 +119,7 @@ void tui_action_save(dataset_td *dataset, char **cur_filename)
         }
 
         /* Try to save in current naem */
-        if (!fileio_save(*cur_filename, dataset)) {
+        if (fileio_save(*cur_filename, dataset) != 0) {
             /* Failed to save */
             WINDOW *win = newwin(LINES - 4, COLS - 4, 2, 2);
             keypad(win, TRUE);
@@ -162,7 +162,7 @@ void tui_action_saveas(dataset_td *dataset, char **cur_filename)
     curs_set(0);
     noecho();
 
-    if (!fileio_save(filename, dataset)) {
+    if (fileio_save(filename, dataset) != 0) {
         mvwprintw(win, 4, 2, "Failed to save");
     } else {
         mvwprintw(win, 4, 2, "Data saved");
