@@ -15,14 +15,14 @@ B_DIR = ${PWD}/bin
 SHELL=/bin/bash
 
 ## Compiler & linker options
-CC          = cc   # gcc, clang
-CCSTD       = c99  # c11, c17, gnu11, gnu17
-CCOPT       = 3    # 0:debug; 1:optimize; 2:optimize more; 3:optimize yet more
-CCWARN		= -pedantic -pedantic-errors -Werror
-EXTRA_CFLAGS  =
-EXTRA_LFLAGS  = -lm -lc -lncurses -lmenu
-CCFLAGS     = ${CCOPTS} ${CCWARN} -std=${CCSTD} ${CCEXTRA} -I ${I_DIR} ${EXTRA_CFLAGS}
-LDFLAGS     = -L ${L_DIR} ${EXTRA_LFLAGS}
+CC           = cc   # gcc, clang
+CCSTD        = c99  # c11, c17, gnu11, gnu17
+CCOPT        = 3    # 0:debug; 1:optimize; 2:optimize more; 3:optimize yet more
+CCWARN		 = -pedantic -pedantic-errors -Werror
+EXTRA_CFLAGS =
+EXTRA_LFLAGS = -lm -lc -lncurses -lmenu
+CCFLAGS      = ${CCOPTS} ${CCWARN} -std=${CCSTD} ${CCEXTRA} -I ${I_DIR} ${EXTRA_CFLAGS}
+LDFLAGS      = -L ${L_DIR} ${EXTRA_LFLAGS}
 
 # Use `make DEBUG=1` to add debugging information, symbol table, etc.
 # Use `make DEBUG=2` to link with the address sanitizer 
@@ -69,7 +69,7 @@ all:
 ctags:
 ifeq (,$(wildcard "/usr/bin/ctags"))
 	@echo "Generating tags..."
-	@ctags -R --exclude='doc' --exclude='obj' --exclude='tmp'.
+	@ctags -R --exclude='doc' --exclude='obj' --exclude='_tmp_'.
 endif
 
 clean-obj:
