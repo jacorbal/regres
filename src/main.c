@@ -8,13 +8,16 @@
  * on a menu-driven @c ncurses interface.
  *
  * @author J. A. Corbal <jacorbal@gmail.com>
- * @version 4.1.1
+ * @version 4.1.2
  * @copyright Copyright (c) 2002-2025, J. A. Corbal.
  *            Licensed under MIT license; read `LICENSE` file for details
  *
  * @date Creation date: Thu Oct  2 11:03:54 UTC 2025
- * @date Last update: Thu Oct  8 13:14:32 UTC 2025
+ * @date Last update: Thu Oct 11 13:52:17 UTC 2025
  */
+
+/* System includes */
+#include <stdio.h>      /* fprintf */
 
 /* Project includes */
 #include <tui.h>
@@ -24,6 +27,7 @@
 int main(void)
 {
     if (tui_start() != 0) {
+        fprintf(stderr, "Cannot open TUI for Regres\n");
         return 1;
     }
     tui_loop();
