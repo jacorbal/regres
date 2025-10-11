@@ -94,8 +94,8 @@ MENU *tui_menu_create(WINDOW **out_menu_win, WINDOW **out_menu_sub,
         }
 
         if (dataset_is_empty(dataset)) {
-            /* Diable menu options that do not work without data */
-            if (i == TUI_MENU_SAVE_DATA || i == TUI_MENU_SAVEAS_DATA ||
+            /* Disable menu options that do not work without data */
+            if (i == TUI_MENU_SAVE_DATA  || i == TUI_MENU_SAVEAS_DATA ||
                 i == TUI_MENU_SHOW_TABLE || i == TUI_MENU_PLOT ||
                 i == TUI_MENU_STATISTICS || i == TUI_MENU_REGRESSION) {
                 int opts = item_opts(items[i]);
@@ -103,7 +103,7 @@ MENU *tui_menu_create(WINDOW **out_menu_win, WINDOW **out_menu_sub,
                 set_item_opts(items[i], opts);
             }
         } else if (!dataset_is_modified(dataset)) {
-            /* Diable menu options that do not work with saved data */
+            /* Disable menu options that do not work with saved data */
             if (i == TUI_MENU_SAVE_DATA) {
                 int opts = item_opts(items[i]);
                 opts &= ~O_SELECTABLE;
@@ -162,7 +162,7 @@ MENU *tui_menu_create(WINDOW **out_menu_win, WINDOW **out_menu_sub,
 }
 
 
-/* Cleanup and fee resources */
+/* Cleanup and free resources */
 void tui_menu_destroy(MENU *menu, WINDOW *menu_win, WINDOW *menu_sub,
         ITEM **items, int items_count)
 {

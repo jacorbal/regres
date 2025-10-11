@@ -1,7 +1,7 @@
 /**
  * @file tui/dialogs.c
  *
- * @brief Implementation of dialogs routines
+ * @brief Implementation of dialog routines
  */
 
 /* System includes */
@@ -44,7 +44,7 @@ int tui_dialog_alert_on_condition(int condition, const char *msg)
     wgetch(win);
     delwin(win);
 
-    /* Fefresh 'stdscr' so background is redrawn */
+    /* Refresh 'stdscr' so background is redrawn */
     touchwin(stdscr);
     refresh();
 
@@ -64,7 +64,7 @@ int tui_dialog_confirm_if_modified(int is_modified, const char *msg)
     int width = strlen(msg) + 4;
     WINDOW *win = newwin(5, width, (LINES - 5) / 2, (COLS - 40) / 2);
     if (win == NULL) {
-        /* If window cannot be created, asume exit */
+        /* If window cannot be created, assume exit */
         return 1;
     }
 

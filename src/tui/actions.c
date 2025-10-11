@@ -94,7 +94,8 @@ void tui_action_load(dataset_td *dataset, char **cur_filename)
         free(*cur_filename);
         *cur_filename = strdup(filename);
         if (!*cur_filename) {
-            mvwprintw(win, 5, 2, "Failed to store filename (OOM)");
+            mvwprintw(win, 5, 2,
+                    "Failed to store filename (insufficient memory)");
 /*
         } else {
             mvwprintw(win, 5, 2, "Current file: %s", *cur_filename);
@@ -118,7 +119,7 @@ void tui_action_save(dataset_td *dataset, char **cur_filename)
             return;
         }
 
-        /* Try to save in current naem */
+        /* Try to save in current name */
         if (fileio_save(*cur_filename, dataset) != 0) {
             /* Failed to save */
             WINDOW *win = newwin(LINES - 4, COLS - 4, 2, 2);
@@ -171,7 +172,8 @@ void tui_action_saveas(dataset_td *dataset, char **cur_filename)
             free(*cur_filename);
             *cur_filename = strdup(filename);
             if (!*cur_filename) {
-                mvwprintw(win, 5, 2, "Failed to store filename (OOM)");
+                mvwprintw(win, 5, 2,
+                        "Failed to store filename (insufficient memory)");
 /*
             } else {
                 mvwprintw(win, 5, 2, "Current file: '%s'", *cur_filename);
