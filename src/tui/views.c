@@ -191,7 +191,7 @@ void tui_view_show_data(const dataset_td *ds, WINDOW *win)
         for (size_t i= start_idx; i < end_idx; ++i) {
             mvwprintw(win, 2 + i - start_idx, 2,
                 "%4zu    %-14.8f %-14.8f %-14.8f",
-                i, ds->points[i].x, ds->points[i].y, ds->points[i].ey);
+                i + 1, ds->points[i].x, ds->points[i].y, ds->points[i].ey);
         }
 
         mvwprintw(win, getmaxy(win)-2, 2, "n: next, p: prev, q: back");
