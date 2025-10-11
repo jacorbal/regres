@@ -13,6 +13,7 @@
 
 /* Project includes */
 #include <dataset.h>
+#include <regres.h>
 #include <stats.h>
 
 

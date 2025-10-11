@@ -17,7 +17,6 @@
 #include <dataset.h>
 #include <fileio.h>
 #include <global.h>
-#include <regres.h>
 
 /* Local includes */
 #include <tui.h>
